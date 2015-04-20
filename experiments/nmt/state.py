@@ -240,15 +240,15 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    state['target'] = ["/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/binarized_text.shuffled.fr.h5"]
-    state['source'] = ["/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/binarized_text.shuffled.en.h5"]
-    state['indx_word'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/ivocab.en.pkl"
-    state['indx_word_target'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/ivocab.fr.pkl"
-    state['word_indx'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/vocab.en.pkl"
-    state['word_indx_trgt'] = "/data/lisatmp3/chokyun/mt/vocab.unlimited/bitexts.selected/vocab.fr.pkl"
+    state['target'] = ["input_abr/euro_es_bin_shuf.h5"]
+    state['source'] = ["input_abr/euro_en_bin_shuf.h5"]
+    state['indx_word'] = "input_abr/euro_en_invvocab.pkl"
+    state['indx_word_target'] = "input_abr/euro_es_invvocab.pkl"
+    state['word_indx'] = "input_abr/euro_en_vocab.pkl"
+    state['word_indx_trgt'] = "input_abr/euro_es_vocab.pkl"
 
-    state['null_sym_source'] = 30000
-    state['null_sym_target'] = 30000
+    state['null_sym_source'] = 12078
+    state['null_sym_target'] = 17751
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
