@@ -240,15 +240,15 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    state['target'] = ["input_abr/euro_es_bin_shuf.h5"]
-    state['source'] = ["input_abr/euro_en_bin_shuf.h5"]
-    state['indx_word'] = "input_abr/euro_en_invvocab.pkl"
-    state['indx_word_target'] = "input_abr/euro_es_invvocab.pkl"
-    state['word_indx'] = "input_abr/euro_en_vocab.pkl"
-    state['word_indx_trgt'] = "input_abr/euro_es_vocab.pkl"
+    state['target'] = ["bitexts/binarized_text.fr.shuf.h5"]
+    state['source'] = ["bitexts/binarized_text.en.shuf.h5"]
+    state['indx_word'] = "bitexts/ivocab.en.pkl"
+    state['indx_word_target'] = "bitexts/ivocab.fr.pkl"
+    state['word_indx'] = "bitexts/vocab.en.pkl"
+    state['word_indx_trgt'] = "bitexts/vocab.fr.pkl"
 
-    state['null_sym_source'] = 12078
-    state['null_sym_target'] = 17751
+    state['null_sym_source'] = 30000
+    state['null_sym_target'] = 30000
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
