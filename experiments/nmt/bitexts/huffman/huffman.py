@@ -6,7 +6,7 @@ from heapq import heappush, heappop, heapify
 # sed -i "s/ &apos;/'/g" [file-name].txt
 
 M = 10000
-F_NAME_PREFIX = "fr"
+F_NAME_PREFIX = None
 
 def get_frequencies(f_name):
   freqs = {}
@@ -63,7 +63,8 @@ def encode_from(f_name, enc_name):
     for line in f:
       to_write = ""
       for word in line.split():
-        to_write += encoder[word]
+        if word in encoder:
+          to_write += encoder[word]
       to_write = to_write.replace("s", " s")
       f2.write(to_write + "\n")
 
@@ -82,16 +83,17 @@ def decode_from(f_name, dec_name):
       f2.write(to_write[:-1] + "\n")
 
 if __name__ == "__main__":
-  usage = "python huffman.py [text file] [pkl file (constructed if not given)] [-e (encode) or -d (decode)]"
-  if len(sys.argv) not in (2, 4):
+  usage = "python huffman.py [text file] [prefix] [pkl file (constructed if not given)] [-e (encode) or -d (decode)]"
+  if len(sys.argv) not in (3, 5):
     print "Usage: %s"%usage
     sys.exit(1)
-  if len(sys.argv) == 2:
+  F_NAME_PREFIX = sys.argv[2]
+  if len(sys.argv) == 3:
     construct_tree(sys.argv[1])
-  elif sys.argv[3] == "-e":
-    encode_from(sys.argv[1], sys.argv[2])
-  elif sys.argv[3] == "-d":
-    decode_from(sys.argv[1], sys.argv[2])
+  elif sys.argv[4] == "-e":
+    encode_from(sys.argv[1], sys.argv[3])
+  elif sys.argv[4] == "-d":
+    decode_from(sys.argv[1], sys.argv[3])
   else:
     print "Usage: %s"%usage
     sys.exit(1)
