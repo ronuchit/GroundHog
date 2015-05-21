@@ -1,4 +1,5 @@
 import sys
+import re
 import cPickle
 from heapq import heappush, heappop, heapify
 
@@ -21,6 +22,7 @@ def find_m_prime(freqs):
   return m_prime
 
 def build_tree(freqs):
+  # construct huffman tree
   heap = []
   m_prime = find_m_prime(freqs)
   for word, freq in freqs.items():
@@ -39,6 +41,21 @@ def build_tree(freqs):
     heappush(heap, together)
     count += 1
   enc = dict(heappop(heap)[1:])
+  # fix symbols
+  for k, v in enc.items():
+    if re.match("s[0-9]+s[0-9]+s", v):
+      print "Symbol fixing will not work, tree depth > 2."
+      sys.exit(1)
+  symbol_map = {}
+  for k, v in enc.items():
+    if not re.match("s[0-9]+s", v):
+      symbol_map[v] = k
+      enc[k] = " " + k
+  for k, v in enc.items():
+    match = re.match("(s[0-9]+)(s[0-9]+)", v)
+    if match:
+      sym1, sym2 = match.groups()
+      enc[k] = " " + sym1 + " " + (symbol_map[sym2] if sym2 in symbol_map else sym2)
   return enc
 
 def reverse_dict(d):
@@ -65,7 +82,6 @@ def encode_from(f_name, enc_name):
       for word in line.split():
         if word in encoder:
           to_write += encoder[word]
-      to_write = to_write.replace("s", " s")
       f2.write(to_write + "\n")
 
 def decode_from(f_name, dec_name):
@@ -76,7 +92,7 @@ def decode_from(f_name, dec_name):
       curr = ""
       to_write = ""
       for word in line.split():
-        curr += word
+        curr += " " + word
         if curr in decoder:
           to_write += decoder[curr] + " "
           curr = ""
