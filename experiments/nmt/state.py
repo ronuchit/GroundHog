@@ -240,15 +240,15 @@ def prototype_encdec_state():
 
     state = prototype_state()
 
-    state['target'] = ["bitexts/binarized_text.fr.shuf.h5"]
-    state['source'] = ["bitexts/binarized_text.en.shuf.h5"]
-    state['indx_word'] = "bitexts/ivocab.en.pkl"
-    state['indx_word_target'] = "bitexts/ivocab.fr.pkl"
-    state['word_indx'] = "bitexts/vocab.en.pkl"
-    state['word_indx_trgt'] = "bitexts/vocab.fr.pkl"
+    state['target'] = ["bitexts/huffman/binarized_text.fr.shuf.h5"]
+    state['source'] = ["bitexts/huffman/binarized_text.en.shuf.h5"]
+    state['indx_word'] = "bitexts/huffman/ivocab.en.pkl"
+    state['indx_word_target'] = "bitexts/huffman/ivocab.fr.pkl"
+    state['word_indx'] = "bitexts/huffman/vocab.en.pkl"
+    state['word_indx_trgt'] = "bitexts/huffman/vocab.fr.pkl"
 
-    state['null_sym_source'] = 30000
-    state['null_sym_target'] = 30000
+    state['null_sym_source'] = 10003
+    state['null_sym_target'] = 10003
     state['n_sym_source'] = state['null_sym_source'] + 1
     state['n_sym_target'] = state['null_sym_target'] + 1
 
@@ -275,7 +275,7 @@ def prototype_search_state():
     state['backward'] = True
     state['seqlen'] = 50
     state['sort_k_batches'] = 20
-    state['prefix'] = 'search_'
+    state['prefix'] = 'huffsearch_'
 
     return state
 
